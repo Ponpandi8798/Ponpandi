@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <title>Ponpandi Portfolio</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/pandiyan.ico">
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        :root {
+            --bg-color: #222327;
+            --text-color: #fff;
+            --main-color: #29fd53;
+            --h1-font: 5rem;
+            --h2-font: 3.2rem;
+            --p-font: 1.1rem;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        nav {
+            height: 60px;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .links-container {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        nav .view-name {
+            display: none;
+        }
+
+        nav a {
+            height: 100%;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        nav a:hover {
+            color: #29fd53;
+        }
+
+        nav .home-link {
+            margin-right: auto;
+            font-size: 22px;
+        }
+
+        nav svg {
+            fill: #fff;
+        }
+
+        #sidebar-active {
+            display: none;
+        }
+
+        .open-sidebar-button,
+        .close-side-button {
+            display: none;
+        }
+
+        @media (max-width:625px) {
+            .links-container {
+                flex-direction: column;
+                align-items: flex-start;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                z-index: 100;
+                width: 300px;
+                background-color: #000;
+                box-shadow: #000;
+                transition: 0.75s ease-out;
+            }
+
+            nav a {
+                box-sizing: border-box;
+                height: auto;
+                width: 100%;
+                padding: 20px 30px;
+                justify-content: flex-start;
+
+            }
+
+            nav .view-name {
+                display: block;
+            }
+
+            nav .hide-home {
+                display: none;
+            }
+
+
+            .open-sidebar-button,
+            .close-side-button {
+                padding: 20px;
+                display: block;
+            }
+
+            #sidebar-active:checked~.links-container {
+                right: 0;
+
+            }
+
+            #sidebar-active:checked~#overlay {
+                height: 100%;
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 9;
+            }
+
+
+        }
+
+        /* Hero Image Css Starts here */
+
+
+        section {
+            padding: 90px 13% 80px;
+        }
+
+        .hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .hero-img img {
+            max-width: 600px;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hero-text h1 {
+            font-size: var(--h1-font);
+            line-height: 1.1;
+            font-weight: 700;
+            margin: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+
+        }
+
+        .hero-text h1 span {
+            color: var(--main-color);
+        }
+
+        .hero-text h6 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .hero-text h6 span {
+            color: var(--main-color)
+        }
+
+        .hero-text h4 {
+            font-family: "Caveat", cursive;
+            font-size: 35px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .hero-text p {
+            font-size: var(--p-font);
+            color: var(--other-color);
+            margin-bottom: 20px;
+            line-height: 2;
+        }
+
+        .h-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: transparent;
+            color: var(--text-color);
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            border-radius: 30px;
+            border: 2px solid var(--main-color);
+            box-shadow: 2px 2px var(--main-color);
+            transition: all .6s ease;
+            margin-right: 30px;
+            text-decoration: none;
+        }
+
+        @media (max-width:1775px) {
+
+            section {
+                padding: 90px 5% 80px;
+            }
+        }
+
+        @media (max-width:1470px) {
+            :root {
+                --h1-font: 4.3rem;
+                --h2-font: 2.8rem;
+                --p-font: 1rem;
+            }
+
+            .hero-img img {
+                max-width: 500px;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        @media (max-width:1260px) {
+            section {
+                padding: 70px 3% 70px;
+            }
+
+            :root {
+                --h1-font: 3.8rem;
+                --h2-font: 2.5rem;
+                --p-font: 15px;
+            }
+
+            .hero-img img {
+                max-width: 4400px;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+        }
+
+        @media (max-width:1070px) {
+            .hero {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2rem;
+                height: 130vh;
+            }
+
+            .hero-text {
+                text-align: center;
+                order: 2;
+                width: 100%;
+            }
+
+            .hero-text p {
+                width: 100%;
+            }
+
+            .hero-img {
+                margin: auto;
+            }
+
+            .hero-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .btn {
+                padding: 10px 23px;
+            }
+        }
+
+        @media (max-width:500px) {
+            .hero {
+                height: 100vh;
+            }
+        }
+
+        /* Timeline---style */
+
+        .main {
+            width: 100%;
+            height: auto;
+            background-color: var(--bg-color);
+            padding: 50px 0;
+            display: grid;
+            place-items: center;
+        }
+
+        .main .heading {
+            font-size: 27px;
+            font-weight: 500;
+            color: var(--main-color);
+            position: relative;
+            margin-bottom: 80px;
+        }
+
+        .heading::after {
+            position: absolute;
+            content: '';
+            width: 50%;
+            height: 4px;
+            left: 50%;
+            bottom: -5px;
+            background-image: linear-gradient(to right, var(--main-color), #fff);
+            transform: translateX(-50%);
+        }
+
+        .container {
+            width: 70%;
+            height: auto;
+            position: relative;
+        }
+
+        .container ul::after {
+            position: absolute;
+            content: '';
+            width: 2px;
+            height: 100%;
+            background-color: var(--main-color);
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .container ul li {
+            width: 50%;
+            height: auto;
+            padding: 15px 20px;
+            background-color: #fff;
+            box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.384);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            z-index: 99;
+            position: relative;
+        }
+
+        .container ul li:nth-child(odd) {
+            float: left;
+            clear: right;
+            transform: translateX(-30px);
+            text-align: right;
+        }
+
+        .container ul li:nth-child(odd) .date {
+            right: 20px;
+        }
+
+        .container ul li:nth-child(even) {
+            float: right;
+            clear: left;
+            transform: translateX(30px);
+        }
+
+        .container ul li:nth-child(3) {
+            margin-bottom: 0;
+        }
+
+        .container ul li .title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        ul li p {
+            font-size: 15px;
+            color: #444;
+            margin: 7px 0;
+            line-height: 23px;
+        }
+
+        ul li .date {
+            position: absolute;
+            top: -40px;
+            width: 135px;
+            height: 35px;
+            border-radius: 20px;
+            color: #000;
+            background-color: var(--main-color);
+            display: grid;
+            place-items: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        @media screen and (max-width:1224px) {
+            .container {
+                width: 85%;
+            }
+
+            .container ul li:nth-child(1) .circle {
+                right: 30px;
+                transform: translate(33.5em, -50%);
+            }
+
+            .container ul li:nth-child(3) .circle {
+                right: 30px;
+                transform: translate(33.5em, -50%);
+
+            }
+        }
+
+        @media screen and (max-width:933px) {
+            .container {
+                width: 80%;
+            }
+
+            .container ul::after {
+                left: -30px;
+            }
+
+            .container ul li {
+                width: 100%;
+                float: none;
+                clear: none;
+                margin-bottom: 80px;
+            }
+
+            .container ul li:nth-child(odd) {
+                transform: translateX(0);
+                text-align: left;
+            }
+
+            .container ul li:nth-child(odd) .date {
+                left: 20px;
+            }
+
+            .container ul li:nth-child(odd) .circle {
+                left: -30px;
+                transform: translate(-50%, -50%);
+            }
+
+            .container ul li:nth-child(even) {
+                transform: translateX(0);
+            }
+        }
+
+        /* Card Container */
+
+        .heading {
+            font-size: 27px;
+            font-weight: 500;
+            color: var(--main-color);
+            position: relative;
+            margin-bottom: 80px;
+            width: 100%;
+            height: auto;
+            background-color: var(--bg-color);
+            padding: 50px 0;
+            display: grid;
+            place-items: center;
+        }
+
+        .heading::after {
+            position: absolute;
+            content: '';
+            width: 50%;
+            height: 4px;
+            left: 50%;
+            bottom: -5px;
+            background-image: linear-gradient(to right, var(--main-color), #fff);
+            transform: translateX(-50%);
+        }
+
+        .card-container {
+            width: 60%;
+            margin: 50px auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .card .content {
+            padding: 15px;
+        }
+
+        .card .content h3 {
+            font-size: 26px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .card .content p {
+            font-size: 17px;
+            color: #92999f;
+            line-height: 1.8;
+        }
+
+        .img-size {
+            height: 48px;
+            width: 48px;
+        }
+
+        /* ContactUs Css staring here */
+
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            margin-top: 36px;
+        }
+
+        input,
+        textarea {
+            height: 56px;
+            border-radius: 12px;
+            border: 1px solid var(--main-color);
+            outline: none;
+            width: 456px;
+            padding: 0 8px 0 16px;
+            background-color: var(--bg-color);
+            color: #fff;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        textarea::placeholder {
+            line-height: 50px;
+        }
+
+        .btn {
+            height: 40px;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            background-color: #29fd53;
+            width: 480px;
+        }
+
+        ::placeholder,
+        .handle,
+        .or-text {
+            color: #ccc;
+        }
+
+        @media (max-width:625px) {
+            .btn-submit {
+                width: 300px;
+            }
+
+            input,
+            textarea {
+                height: 56px;
+                border-radius: 12px;
+                border: 1px solid var(--main-color);
+                outline: none;
+                width: 300px;
+                padding: 0 8px 0 16px;
+                background-color: var(--bg-color);
+                color: #fff;
+            }
+        }
+
+
+        /* The footer is fixed to the bottom of the page */
+        @media (max-height:800px) {
+            footer {
+                position: static;
+            }
+        }
+
+        .footer-distributed {
+            background-color: var(--bg-color);
+            box-sizing: border-box;
+            width: 100%;
+            text-align: left;
+            font: bold 16px sans-serif;
+            padding: 50px 50px 60px 50px;
+            margin-top: 80px;
+        }
+
+        .footer-distributed .footer-left,
+        .footer-distributed .footer-center,
+        .footer-distributed .footer-right {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        /* Footer left */
+
+        .footer-distributed .footer-left {
+            width: 30%;
+        }
+
+        .footer-distributed h3 {
+            color: var(--main-color);
+            font-size: xx-large;
+            margin: 0;
+        }
+
+
+        .footer-distributed h3 span {
+            color: #e0ac1c;
+        }
+
+        /* Footer links */
+
+        .footer-distributed .footer-links {
+            color: #ffffff;
+            margin: 20px 0 12px;
+        }
+
+        .footer-distributed .footer-links a {
+            display: inline-block;
+            line-height: 1.8;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .footer-distributed .footer-company-name {
+            color: #8f9296;
+            font-size: 14px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        /* Footer Center */
+
+        .footer-distributed .footer-center {
+            width: 35%;
+        }
+
+        .footer-distributed .footer-center i {
+            background-color: #33383b;
+            color: #ffffff;
+            font-size: 25px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 42px;
+            margin: 10px 15px;
+            vertical-align: middle;
+        }
+
+        .footer-distributed .footer-center i.fa-envelope {
+            font-size: 17px;
+            line-height: 38px;
+        }
+
+        .footer-distributed .footer-center p {
+            display: inline-block;
+            color: #ffffff;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        .footer-distributed .footer-center p span {
+            display: block;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        .footer-distributed .footer-center p a {
+            color: var(--main-color);
+            text-decoration: none;
+            ;
+        }
+
+        /* Footer Right */
+
+        .footer-distributed .footer-right {
+            width: 30%;
+        }
+
+        .footer-distributed .footer-company-about {
+            line-height: 20px;
+            color: #92999f;
+            font-size: 13px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .footer-distributed .footer-company-about span {
+            display: block;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .footer-distributed .footer-icons {
+            margin-top: 25px;
+        }
+
+        .footer-distributed .footer-icons a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            background-color: #33383b;
+            border-radius: 2px;
+            font-size: 20px;
+            color: #ffffff;
+            text-align: center;
+            line-height: 35px;
+            margin-right: 3px;
+            margin-bottom: 5px;
+        }
+
+        .footer-distributed .footer-icons a:hover {
+            background-color: var(--main-color);
+        }
+
+        .footer-links a:hover {
+            color: var(--main-color);
+        }
+
+        @media (max-width: 880px) {
+
+            .footer-distributed .footer-left,
+            .footer-distributed .footer-center,
+            .footer-distributed .footer-right {
+                display: block;
+                width: 100%;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+
+            .footer-distributed .footer-center i {
+                margin-left: 0;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav>
+        <a href="#" class="view-name home-link">PONPANDI</a>
+
+        <input type="checkbox" id="sidebar-active">
+        <label for="sidebar-active" class="open-sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+            </svg></label>
+
+        <label id="overlay" for="sidebar-active"></label>
+        <div class="links-container">
+            <label for="sidebar-active" class="close-side-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#e8eaed">
+                    <path
+                        d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                </svg>
+            </label>
+
+            <a href="#" class="home-link hide-home">PONPANDI</a>
+            <a href="#">HOME</a>
+            <a href="#">ABOUT</a>
+            <a href="#EXPERIENCE">EXPERIENCE</a>
+            <a href="#Contact">CONTACT US</a>
+
+        </div>
+    </nav>
+
+    <!-- Hero Image HTML Part start here -->
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <h6>Hello, <span>my name is</span></h6>
+            <h1>Ponpandi</h1>
+            <h4>I am Software Developer</h4>
+            <p>From India. I have rich experience in web design, also I am <br>
+                good at wordpress. I love to talk with you about our unique. </p>
+            <div class="hero-btn">
+                <a href="B.Ponpandi_Resume.pdf" download="" class="h-btn">Download CV</a>
+
+            </div>
+        </div>
+
+        <div class="hero-img">
+            <img src="profile-pic.png" alt="">
+        </div>
+
+    </section>
+
+    <!-- EXPERIENCE TIMELINE -->
+
+    <div class="main" id="EXPERIENCE">
+        <h3 class="heading">EXPERIENCE</h3>
+
+        <div class="container">
+            <ul>
+                <li>
+                    <h3 class="title">Consultant</h3>
+                    <p>
+                        After two years of experience, I was promoted to consultant at Xebia NDS India Private Limited .
+                    </p>
+                    <span class="circle"></span>
+                    <span class="date">Decembar 2023</span>
+                </li>
+                <li>
+                    <h3 class="title">Associate Developer</h3>
+                    <p>
+                        After 1 year of experience, I was promoted to associate developer at Xebia NDS India Private
+                        Limited.
+                    </p>
+                    <span class="circle"></span>
+                    <span class="date">Decembar 2022</span>
+                </li>
+                <li>
+                    <h3 class="title">Trainee Programer</h3>
+                    <p>
+                        In August 2021, I began working at Xebia NDS India Private Limited as a trainee programmer.
+                    </p>
+                    <span class="circle"></span>
+                    <span class="date">August 2021</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Certification Card -->
+
+    <h3 class="heading">CERTIFICATION</h3>
+    <div class="card-container">
+        <div class="card">
+            <div class="content">
+                <h3>Associate Reactive Developer</h3>
+                <p>The OutSystems Reactive Developer certification covers the fundamentals of developing reactive web
+                    and
+                    mobile applications.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="content">
+                <h3>Mobile Developer Specilist</h3>
+                <p>The Mobile Developer Specialization focuses on local storage, offline apps, data synchronization,
+                    mobile
+                    plugins.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="content">
+                <h3>Outsystems Developer cloud</h3>
+                <p>The OutSystems Developer cloud certification is the newest certification introduced by OutSystems.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Contact Us -->
+
+    <div class="-con-container" id="Contact">
+        <form class="contact-container" action="https://api.web3forms.com/submit" method="POST">
+            <h1>Contact Us</h1>
+            <input type="hidden" name="access_key" value="ca7d41a9-74ed-449a-af3d-4168f61c0e35">
+            <div class="input-name">
+                <input type="text" class="first-name" name="fName" placeholder="First Name">
+            </div>
+            <div class="input-email">
+                <input type="email" class="email" name="email" placeholder="Email">
+            </div>
+            <div class="input-message">
+                <textarea type="text" class="message" name="message" placeholder="Message"></textarea>
+            </div>
+            <div class="action-btn">
+                <button class="btn btn-submit">Submit</button>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- FOOTER PART -->
+
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+            <h3>PONPANDI</h3>
+
+            <p class="footer-links">
+                <a href="#">HOME</a>
+                |
+                <a href="#">ABOUT</a>
+                |
+                <a href="#">EXPERIENCE</a>
+                |
+                <a href="#">CONTACT</a>
+            </p>
+
+            <p class="footer-company-name">Copyright © 2024 <strong>PONPANDI</strong> All rights reserved</p>
+        </div>
+
+        <div class="footer-center">
+            <div>
+                <i class="ri-map-pin-fill"></i>
+                <p><span>DINDIGUL</span>
+                    INDIA</p>
+            </div>
+
+            <div>
+                <i class="ri-phone-fill"></i>
+                <p>+91 9943630252</p>
+            </div>
+            <div>
+                <i class="ri-mail-fill"></i>
+                <p><a href="mailto:pandiyan8798@gmail.com">pandiyan8798@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About Me</span>
+                <strong>Ponpandi</strong> I am Software Developer.
+                Experienced Software Engineer skilled in innovative program
+                development to drive organizational success.
+            </p>
+            <div class="footer-icons">
+                <a href="https://www.facebook.com/Ajithpandiyan.8" target="_blank"><i
+                        class="ri-facebook-circle-fill"></i></a>
+                <a href="https://www.instagram.com/pandiyan._.bala/" target="_blank"><i
+                        class="ri-instagram-fill"></i></i></a>
+                <a href="https://www.linkedin.com/in/ponpandi-balakrishnan/" target="_blank"><i
+                        class="ri-linkedin-box-fill"></i></i></a>
+                <a href="https://github.com/Ponpandi8798" target="_blank"><i class="ri-github-fill"></i></i></a>
+            </div>
+        </div>
+
+
+    </footer>
+
+</body>
+<script>
+
+</script>
+
+</html>
